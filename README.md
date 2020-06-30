@@ -1,6 +1,6 @@
 [![npm version](https://badge.fury.io/js/react-native-google-cast.svg)](https://badge.fury.io/js/react-native-google-cast)
 
-# react-native-google-cast
+# reaction-google-cast
 
 This library wraps the native Google Cast SDK for iOS and Android, providing a unified JavaScript interface.
 
@@ -11,13 +11,13 @@ This library wraps the native Google Cast SDK for iOS and Android, providing a u
 ## Getting started
 
 ```sh
-$ npm install react-native-google-cast
+$ npm install reaction-google-cast
 ```
 
 or
 
 ```sh
-$ yarn add react-native-google-cast
+$ yarn add reaction-google-cast
 ```
 
 ### Installation
@@ -26,10 +26,10 @@ $ yarn add react-native-google-cast
   <summary>Linker</summary>
 
 ```
-$ react-native link react-native-google-cast
+$ react-native link reaction-google-cast
 ```
 
-Note: This will only link the react-native-google-cast library. You'll still need to add Google Cast SDK using the steps below.
+Note: This will only link the reaction-google-cast library. You'll still need to add Google Cast SDK using the steps below.
 
 </details>
 
@@ -43,13 +43,13 @@ In your `ios/Podfile`, add **one** of these snippets:
 - If targeting [iOS 13 and don't require guest mode](https://developers.google.com/cast/docs/ios_sender/ios13_changes), add
 
   ```
-  pod 'react-native-google-cast/NoBluetooth', path: '../node_modules/react-native-google-cast/ios/'
+  pod 'reaction-google-cast/NoBluetooth', path: '../node_modules/reaction-google-cast/ios/'
   ```
 
 - If you need to support guest mode, add
 
   ```
-  pod 'react-native-google-cast', path: '../node_modules/react-native-google-cast/ios/'
+  pod 'reaction-google-cast', path: '../node_modules/reaction-google-cast/ios/'
   pod 'google-cast-sdk', '4.3.0'
   ```
 
@@ -58,7 +58,7 @@ In your `ios/Podfile`, add **one** of these snippets:
 - If you want to link the Google Cast SDK manually, add
 
   ```
-  pod 'react-native-google-cast/Manual', path: '../node_modules/react-native-google-cast/ios/'
+  pod 'reaction-google-cast/Manual', path: '../node_modules/reaction-google-cast/ios/'
   ```
 
   and follow [Manual Setup](https://developers.google.com/cast/docs/ios_sender#manual_setup). Note that this option is not explored yet. If you go this route, please let us know how you made it work. :)
@@ -66,7 +66,7 @@ In your `ios/Podfile`, add **one** of these snippets:
 - Or, if you're still using v3 of the SDK (the API is compatible).
 
   ```
-  pod 'react-native-google-cast', path: '../node_modules/react-native-google-cast/ios/'
+  pod 'reaction-google-cast', path: '../node_modules/reaction-google-cast/ios/'
   pod 'google-cast-sdk', '~> 3'
   ```
 
@@ -81,7 +81,7 @@ Finally, run `pod install`.
 
 - In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
 
-- Go to `node_modules` ➜ `react-native-google-cast` and add `RNGoogleCast.xcodeproj`
+- Go to `node_modules` ➜ `reaction-google-cast` and add `RNGoogleCast.xcodeproj`
 
 - In XCode, in the project navigator, select your project. Add `libRNGoogleCast.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 
@@ -100,19 +100,19 @@ Finally, run `pod install`.
 2. Append the following lines to `android/settings.gradle`:
 
    ```java
-   include ':react-native-google-cast'
-   project(':react-native-google-cast').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-google-cast/android')
+   include ':reaction-google-cast'
+   project(':reaction-google-cast').projectDir = new File(rootProject.projectDir, '../node_modules/reaction-google-cast/android')
    ```
 
 3. Insert the following lines inside the `dependencies` block in `android/app/build.gradle`:
 
    ```java
    dependencies {
-     implementation project(':react-native-google-cast')
+     implementation project(':reaction-google-cast')
    }
    ```
 
-4. By default, the react-native-google-cast package automatically loads the latest version (`+`) of the Cast SDK and support libraries as its dependencies. To use a specific version, set it in the root `android/build.gradle`:
+4. By default, the reaction-google-cast package automatically loads the latest version (`+`) of the Cast SDK and support libraries as its dependencies. To use a specific version, set it in the root `android/build.gradle`:
 
    ```java
    buildscript {
@@ -223,7 +223,7 @@ Finally, run `pod install`.
 ## Usage
 
 ```js
-import GoogleCast, { CastButton } from 'react-native-google-cast'
+import GoogleCast, { CastButton } from 'reaction-google-cast'
 ```
 
 Render the Cast button which enables to connect to Chromecast
@@ -259,6 +259,7 @@ GoogleCast.castMedia({
 - `GoogleCast.getCastState().then((state: 'NoDevicesAvailable' | 'NotConnected' | 'Connecting' | 'Connected' }) => { ... })`
 - `GoogleCast.getCastDevice().then((device: { id, model, name, version }) => { ... })`
 - `GoogleCast.castMedia(options)`
+- `GoogleCast.castMediaMultiple(multipleOptions)` - casting queue of files with ability replay
 - `GoogleCast.play()`
 - `GoogleCast.pause()`
 - `GoogleCast.seek(playPosition)` - jump to position in seconds from the beginning of the stream
@@ -283,7 +284,7 @@ The Cast button displays the Cast icon. It automatically changes appearance base
 When clicking the button, the native [Cast Dialog](https://developers.google.com/cast/docs/design_checklist/cast-dialog) is presented which enables the user to connect to a Chromecast, and, when casting, to play/pause and change volume.
 
 ```js
-import { CastButton } from 'react-native-google-cast'
+import { CastButton } from 'reaction-google-cast'
 
 // ...
   render() {
@@ -364,7 +365,7 @@ The library emits events to inform you about current state.
 A session is an end-to-end connection from a sender application (mobile app) to a receiver application (on Chromecast).
 
 ```js
-import GoogleCast from 'react-native-google-cast'
+import GoogleCast from 'reaction-google-cast'
 
 // Establishing connection to Chromecast
 GoogleCast.EventEmitter.addListener(GoogleCast.SESSION_STARTING, () => {
@@ -514,7 +515,7 @@ Refer to the [example](example/) folder to find an implementation of this projec
   clang: error: linker command failed with exit code 1 (use -v to see invocation)
   ```
 
-  This is caused by Google introducing a [dynamic SDK build in 4.3.1](https://issuetracker.google.com/issues/113069508). Please use `pod 'google-cast-sdk', '4.3.0'` or `pod react-native-google-cast/NoBluetooth`.
+  This is caused by Google introducing a [dynamic SDK build in 4.3.1](https://issuetracker.google.com/issues/113069508). Please use `pod 'google-cast-sdk', '4.3.0'` or `pod reaction-google-cast/NoBluetooth`.
 
 - Cast button isn't displayed on an iOS device (but shows in emulator)
 

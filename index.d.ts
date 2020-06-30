@@ -10,10 +10,10 @@ declare module 'react-native-google-cast' {
   }
 
   export type CastState =
-    | 'NoDevicesAvailable'
-    | 'NotConnected'
-    | 'Connecting'
-    | 'Connected'
+      | 'NoDevicesAvailable'
+      | 'NotConnected'
+      | 'Connecting'
+      | 'Connected'
 
   export type CastOptions = {
     mediaUrl: string
@@ -29,6 +29,10 @@ declare module 'react-native-google-cast' {
     customData?: any
     textTrackStyle?: TextTrackStyle
   }
+  export type CastOptionsMultiple = {
+    castedMediaList: CastOptions[]
+    repeatMode?: number
+  }
 
   export type TextTrackStyle = {
     backgroundColor?: string
@@ -36,13 +40,13 @@ declare module 'react-native-google-cast' {
     edgeType?: 'depressed' | 'dropShadow' | 'none' | 'outline' | 'raised'
     fontFamily?: string
     fontGenericFamily?:
-      | 'casual'
-      | 'cursive'
-      | 'monoSansSerif'
-      | 'monoSerif'
-      | 'sansSerif'
-      | 'serif'
-      | 'smallCaps'
+        | 'casual'
+        | 'cursive'
+        | 'monoSansSerif'
+        | 'monoSerif'
+        | 'sansSerif'
+        | 'serif'
+        | 'smallCaps'
     fontScale?: number
     fontStyle?: 'bold' | 'boldItalic' | 'italic' | 'normal'
     foregroundColor?: string
@@ -55,6 +59,7 @@ declare module 'react-native-google-cast' {
     getCastDevice(): Promise<CastDevice>
     getCastState(): Promise<CastState>
     castMedia(options: CastOptions): void
+    castMediaMultiple(options: CastOptionsMultiple): void
     endSession(stopCast?: boolean): Promise<boolean>
     play(): void
     pause(): void
@@ -69,7 +74,7 @@ declare module 'react-native-google-cast' {
     toggleSubtitles(enabled: boolean, languageCode?: string): Promise<void>
 
     EventEmitter: EventEmitter
-    
+
     SESSION_STARTING: string
     SESSION_STARTED: string
     SESSION_START_FAILED: string
@@ -78,12 +83,12 @@ declare module 'react-native-google-cast' {
     SESSION_RESUMED: string
     SESSION_ENDING: string
     SESSION_ENDED: string
-    
+
     MEDIA_STATUS_UPDATED: string
     MEDIA_PLAYBACK_STARTED: string
     MEDIA_PLAYBACK_ENDED: string
     MEDIA_PROGRESS_UPDATED: string
-    
+
     CHANNEL_CONNECTED: string
     CHANNEL_DISCONNECTED: string
     CHANNEL_MESSAGE_RECEIVED: string

@@ -20,17 +20,17 @@ type CastDevice = {
 }
 
 type CastState =
-  | 'NoDevicesAvailable'
-  | 'NotConnected'
-  | 'Connecting'
-  | 'Connected'
+| 'NoDevicesAvailable'
+| 'NotConnected'
+| 'Connecting'
+| 'Connected'
 
 type TextTrackStyle = {
-  backgroundColor?: string,
-  edgeColor?: string,
-  edgeType?: 'depressed' | 'dropShadow' | 'none' | 'outline' | 'raised',
-  fontFamily?: string,
-  fontGenericFamily?:
+      backgroundColor?: string,
+      edgeColor?: string,
+      edgeType?: 'depressed' | 'dropShadow' | 'none' | 'outline' | 'raised',
+      fontFamily?: string,
+      fontGenericFamily?:
     | 'casual'
     | 'cursive'
     | 'monoSansSerif'
@@ -38,12 +38,12 @@ type TextTrackStyle = {
     | 'sansSerif'
     | 'serif'
     | 'smallCaps',
-  fontScale?: number,
-  fontStyle?: 'bold' | 'boldItalic' | 'italic' | 'normal',
-  foregroundColor?: string,
-  windowColor?: string,
-  windowCornerRadius?: number,
-  windowType?: 'none' | 'normal' | 'rounded',
+    fontScale?: number,
+    fontStyle?: 'bold' | 'boldItalic' | 'italic' | 'normal',
+    foregroundColor?: string,
+    windowColor?: string,
+    windowCornerRadius?: number,
+    windowType?: 'none' | 'normal' | 'rounded',
 }
 
 export default {
@@ -52,10 +52,10 @@ export default {
   },
   getCastState(): Promise<CastState> {
     return GoogleCast.getCastState().then(
-      state =>
-        ['NoDevicesAvailable', 'NotConnected', 'Connecting', 'Connected'][
-          state
-        ],
+        state =>
+            ['NoDevicesAvailable', 'NotConnected', 'Connecting', 'Connected'][
+                state
+                ],
     )
   },
   castMedia(params: {
@@ -73,6 +73,34 @@ export default {
     textTrackStyle?: TextTrackStyle,
   }) {
     return GoogleCast.castMedia(params)
+  },
+  /**
+   *
+   * @param params {
+   *   replayMode: REPEAT_MODE_REPEAT_OFF = 0, REPEAT_MODE_REPEAT_ALL = 1, REPEAT_MODE_REPEAT_SINGLE = 2
+   *   castedMediaList: list of CastOptions
+   *   {
+    mediaUrl: string,
+    title?: string,
+    subtitle?: string,
+    studio?: string,
+    imageUrl?: string,
+    posterUrl?: string,
+    contentType?: string,
+    streamDuration?: number,
+    playPosition?: number,
+    isLive?: boolean,
+    customData?: Object,
+    textTrackStyle?: TextTrackStyle,
+  }
+   * }
+   *
+   */
+  castMediaMultiple(params: {
+    castedMediaList: any,
+    repeatMode?: number
+  }){
+    return GoogleCast.castMediaMultiple(params)
   },
   /**
    * Ends the current session.
@@ -129,30 +157,30 @@ export default {
    * @param {boolean} languageCode
    */
   toggleSubtitles(enabled: boolean, languageCode?: string) {
-    return GoogleCast.toggleSubtitles(enabled, languageCode)
-  },
+  return GoogleCast.toggleSubtitles(enabled, languageCode)
+},
 
-  // TODO use the same native event interface instead of hacking it here
-  EventEmitter:
+// TODO use the same native event interface instead of hacking it here
+EventEmitter:
     Platform.OS === 'ios'
-      ? new NativeEventEmitter(GoogleCast)
-      : DeviceEventEmitter,
+        ? new NativeEventEmitter(GoogleCast)
+        : DeviceEventEmitter,
 
-  SESSION_STARTING: GoogleCast.SESSION_STARTING,
-  SESSION_STARTED: GoogleCast.SESSION_STARTED,
-  SESSION_START_FAILED: GoogleCast.SESSION_START_FAILED,
-  SESSION_SUSPENDED: GoogleCast.SESSION_SUSPENDED,
-  SESSION_RESUMING: GoogleCast.SESSION_RESUMING,
-  SESSION_RESUMED: GoogleCast.SESSION_RESUMED,
-  SESSION_ENDING: GoogleCast.SESSION_ENDING,
-  SESSION_ENDED: GoogleCast.SESSION_ENDED,
+        SESSION_STARTING: GoogleCast.SESSION_STARTING,
+    SESSION_STARTED: GoogleCast.SESSION_STARTED,
+    SESSION_START_FAILED: GoogleCast.SESSION_START_FAILED,
+    SESSION_SUSPENDED: GoogleCast.SESSION_SUSPENDED,
+    SESSION_RESUMING: GoogleCast.SESSION_RESUMING,
+    SESSION_RESUMED: GoogleCast.SESSION_RESUMED,
+    SESSION_ENDING: GoogleCast.SESSION_ENDING,
+    SESSION_ENDED: GoogleCast.SESSION_ENDED,
 
-  MEDIA_STATUS_UPDATED: GoogleCast.MEDIA_STATUS_UPDATED,
-  MEDIA_PLAYBACK_STARTED: GoogleCast.MEDIA_PLAYBACK_STARTED,
-  MEDIA_PLAYBACK_ENDED: GoogleCast.MEDIA_PLAYBACK_ENDED,
-  MEDIA_PROGRESS_UPDATED: GoogleCast.MEDIA_PROGRESS_UPDATED,
+    MEDIA_STATUS_UPDATED: GoogleCast.MEDIA_STATUS_UPDATED,
+    MEDIA_PLAYBACK_STARTED: GoogleCast.MEDIA_PLAYBACK_STARTED,
+    MEDIA_PLAYBACK_ENDED: GoogleCast.MEDIA_PLAYBACK_ENDED,
+    MEDIA_PROGRESS_UPDATED: GoogleCast.MEDIA_PROGRESS_UPDATED,
 
-  CHANNEL_CONNECTED: GoogleCast.CHANNEL_CONNECTED,
-  CHANNEL_DISCONNECTED: GoogleCast.CHANNEL_DISCONNECTED,
-  CHANNEL_MESSAGE_RECEIVED: GoogleCast.CHANNEL_MESSAGE_RECEIVED,
+    CHANNEL_CONNECTED: GoogleCast.CHANNEL_CONNECTED,
+    CHANNEL_DISCONNECTED: GoogleCast.CHANNEL_DISCONNECTED,
+    CHANNEL_MESSAGE_RECEIVED: GoogleCast.CHANNEL_MESSAGE_RECEIVED,
 }

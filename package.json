@@ -1,0 +1,44 @@
+{
+  "name": "reaction-chrome-cast",
+  "version": "0.1.0",
+  "description": "React Native wrapper for the Google Cast SDK for iOS and Android",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "start": "react-native start"
+  },
+  "author": {
+    "name": "Reaction Club"
+  },
+  "license": "MIT",
+  "keywords": [
+    "react-native",
+    "ios",
+    "android",
+    "chromecast",
+    "google",
+    "cast",
+    "google-cast"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:slavakoshevoi/reaction-chrome-cast.git"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.0"
+  },
+  "peerDependencies": {
+    "react": ">=15.1 || >=16.0.0",
+    "react-native": ">=0.40"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/runtime": "^7.4.5",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0",
+    "metro-react-native-babel-preset": "^0.54.1",
+    "react": "16.8.3",
+    "react-native": "0.59.10",
+    "react-test-renderer": "16.8.3"
+  }
+}
